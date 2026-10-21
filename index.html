@@ -1,0 +1,247 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0812">
+  <title>Who Would Actually? | Party Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#" id="homeLink">
+      <span class="brand-icon">✦</span>
+      <span>WHO WOULD <strong>ACTUALLY?</strong></span>
+    </a>
+    <span class="offline-label"><span></span> PARTY MODE</span>
+  </header>
+
+  <main class="app">
+    <!-- HOME SCREEN -->
+    <section id="homeScreen" class="screen active">
+      <div class="hero">
+        <div class="eyebrow"><span>✦</span> YOUR FRIEND GROUP, EXPOSED</div>
+        <h1>Who would<br>actually <span class="gradient-text">do that?</span></h1>
+        <p class="hero-copy">
+          One phone. Your whole squad. Absolutely questionable decisions.
+        </p>
+      </div>
+
+      <div class="panel setup-panel">
+        <div class="section-heading">
+          <div>
+            <span class="step-label">STEP 01</span>
+            <h2>Who's playing?</h2>
+          </div>
+          <span class="player-count" id="playerCount">0 / 12</span>
+        </div>
+
+        <form id="playerForm" class="add-player-form">
+          <input
+            id="playerName"
+            type="text"
+            maxlength="20"
+            placeholder="Enter a player's name..."
+            autocomplete="off"
+            aria-label="Player name"
+          >
+          <button class="icon-button" type="submit" aria-label="Add player">+</button>
+        </form>
+
+        <div id="playerList" class="player-list">
+          <div class="empty-hint">Your squad will appear here 👀</div>
+        </div>
+
+        <p class="helper-text">Add 3–12 players to get the chaos started.</p>
+
+        <div class="divider"></div>
+
+        <div class="section-heading">
+          <div>
+            <span class="step-label">STEP 02</span>
+            <h2>Pick your vibe</h2>
+          </div>
+        </div>
+
+        <div class="category-grid" id="categoryGrid">
+          <button class="category-card selected" data-category="Funny" type="button">
+            <span class="category-emoji">😂</span>
+            <span>Funny</span>
+          </button>
+          <button class="category-card" data-category="Savage" type="button">
+            <span class="category-emoji">🔥</span>
+            <span>Savage</span>
+          </button>
+          <button class="category-card" data-category="Friendship" type="button">
+            <span class="category-emoji">🫂</span>
+            <span>Friendship</span>
+          </button>
+          <button class="category-card" data-category="College" type="button">
+            <span class="category-emoji">🎓</span>
+            <span>College</span>
+          </button>
+          <button class="category-card" data-category="Chaos" type="button">
+            <span class="category-emoji">💀</span>
+            <span>Chaos</span>
+          </button>
+        </div>
+
+        <div class="custom-question-box">
+          <label for="customQuestion">Got your own question?</label>
+          <div class="custom-question-form">
+            <input
+              id="customQuestion"
+              type="text"
+              maxlength="160"
+              placeholder="Who would become famous overnight?"
+            >
+            <button id="addQuestionButton" class="secondary-button" type="button">Add</button>
+          </div>
+          <p class="helper-text" id="customQuestionStatus">Custom questions join the Random category.</p>
+        </div>
+
+        <button id="startButton" class="primary-button full-button" type="button">
+          LET THE CHAOS BEGIN <span>→</span>
+        </button>
+        <p class="center-note">No accounts. No internet required. Just your friends.</p>
+      </div>
+
+      <div class="feature-row">
+        <div><span>🤫</span><strong>Secret votes</strong></div>
+        <div><span>💥</span><strong>Wild reveals</strong></div>
+        <div><span>🏆</span><strong>Squad legends</strong></div>
+      </div>
+    </section>
+
+    <!-- PASS THE PHONE SCREEN -->
+    <section id="handoffScreen" class="screen">
+      <div class="back-row">
+        <button class="text-button" id="quitGameButton" type="button">← Back to setup</button>
+        <span class="round-pill" id="handoffRound">ROUND 01</span>
+      </div>
+
+      <div class="handoff-content">
+        <div class="handoff-icon">📱</div>
+        <div class="eyebrow">SECRET VOTING IN PROGRESS</div>
+        <h1>Pass the phone<br><span class="gradient-text">to the next player.</span></h1>
+        <p class="hero-copy">Make sure nobody else sees your vote.</p>
+
+        <div class="panel handoff-card">
+          <span class="step-label">UP NEXT</span>
+          <h2 id="handoffPlayer">Player's turn</h2>
+          <p id="handoffProgress" class="helper-text">Player 1 of 4</p>
+          <button id="readyButton" class="primary-button full-button" type="button">
+            I'M READY 👀
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRIVATE VOTING SCREEN -->
+    <section id="voteScreen" class="screen">
+      <div class="game-topline">
+        <button id="voteBackButton" class="text-button" type="button">← Exit round</button>
+        <span id="voteRoundLabel" class="round-pill">ROUND 01</span>
+      </div>
+
+      <div class="progress-track"><div id="voteProgressBar"></div></div>
+      <p id="voteProgressText" class="progress-text">PLAYER 1 OF 4</p>
+
+      <div class="question-card">
+        <span class="question-category" id="questionCategory">😂 FUNNY QUESTION</span>
+        <h1 id="questionText">Who would accidentally become a millionaire?</h1>
+        <p>Choose the friend who fits best.</p>
+      </div>
+
+      <div class="voting-header">
+        <h2>Cast your vote</h2>
+        <span class="helper-text">Your choice is secret 🤫</span>
+      </div>
+
+      <div id="voteOptions" class="vote-options"></div>
+
+      <div id="voteFeedback" class="feedback-message" aria-live="polite"></div>
+      <button id="submitVoteButton" class="primary-button full-button" type="button" disabled>
+        LOCK IN MY VOTE 🔒
+      </button>
+      <p class="center-note">No changing your mind once you lock it in!</p>
+    </section>
+
+    <!-- RESULTS SCREEN -->
+    <section id="resultsScreen" class="screen">
+      <div class="results-topline">
+        <span id="resultsRoundLabel" class="round-pill">ROUND 01</span>
+        <span class="results-kicker">THE VERDICT IS IN</span>
+      </div>
+
+      <div class="results-hero">
+        <div class="reveal-symbol" id="revealSymbol">👑</div>
+        <div class="eyebrow">THE SQUAD HAS SPOKEN</div>
+        <h1 id="winnerTitle">And the award goes to...</h1>
+        <p id="resultsQuestion" class="results-question"></p>
+      </div>
+
+      <div class="panel results-panel">
+        <div class="results-summary">
+          <span>VOTE BREAKDOWN</span>
+          <span id="totalVotes">0 VOTES</span>
+        </div>
+        <div id="resultsList" class="results-list"></div>
+        <div id="tieMessage" class="tie-message hidden"></div>
+      </div>
+
+      <div class="panel leaderboard-panel">
+        <div class="section-heading">
+          <div>
+            <span class="step-label">THE HALL OF FAME</span>
+            <h2>Squad scoreboard</h2>
+          </div>
+          <span>🏆</span>
+        </div>
+        <div id="leaderboard" class="leaderboard"></div>
+      </div>
+
+      <button id="nextRoundButton" class="primary-button full-button" type="button">
+        NEXT ROUND →
+      </button>
+      <button id="finishButton" class="secondary-button full-button" type="button">
+        END GAME & VIEW FINAL SCORES
+      </button>
+    </section>
+
+    <!-- FINAL SCORES SCREEN -->
+    <section id="finalScreen" class="screen">
+      <div class="final-hero">
+        <div class="final-trophy">🏆</div>
+        <div class="eyebrow">THE GAME IS OVER</div>
+        <h1>Legends were<br><span class="gradient-text">made today.</span></h1>
+        <p class="hero-copy">Your squad's final results are in.</p>
+      </div>
+
+      <div class="panel">
+        <span class="step-label">FINAL LEADERBOARD</span>
+        <div id="finalLeaderboard" class="leaderboard final-leaderboard"></div>
+      </div>
+
+      <button id="playAgainButton" class="primary-button full-button" type="button">
+        PLAY AGAIN 🔥
+      </button>
+      <button id="homeButton" class="secondary-button full-button" type="button">
+        BACK TO HOME
+      </button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    MADE FOR FRIENDS WHO CAN HANDLE THE TRUTH <span>♥</span>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
