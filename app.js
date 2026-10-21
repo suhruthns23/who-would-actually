@@ -701,10 +701,8 @@ function startVotingTurn() {
 
   voteOptions.innerHTML = "";
 
-  // Do not allow players to vote for themselves.
-  const eligiblePlayers = players.filter(function (player) {
-    return player.id !== currentPlayer.id;
-  });
+  // Allow players to vote for themselves.
+  const eligiblePlayers = players;
 
   eligiblePlayers.forEach(function (player) {
     const option = document.createElement("button");
